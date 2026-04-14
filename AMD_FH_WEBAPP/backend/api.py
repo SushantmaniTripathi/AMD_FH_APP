@@ -139,6 +139,7 @@ async def nudge(payload: NudgeRequest) -> NudgeResponse:
 async def summary(payload: SummaryRequest) -> SummaryResponse:
     """
     Generate week-level textual insights from 7 days of order data.
+    Uses Google Gemini for intelligent, natural language generation if configured.
     """
     if not payload.weekly_data:
         return SummaryResponse(insights=["No data available for the selected period."])
@@ -164,8 +165,46 @@ async def summary(payload: SummaryRequest) -> SummaryResponse:
     avg_cal   = total_cal   / total_items if total_items else 0
     avg_prot  = total_prot  / total_items if total_items else 0
     avg_sugar = total_sugar / total_items if total_items else 0
+    active_days = sum(1 for d in day_tallies if d > 0)
 
     insights: list[str] = []
+
+    # Attempt to use Gemini (Google Services Integration Requirement)
+    import os
+    gemini_api_key = os.getenv("GEMINI_API_KEY")
+    if gemini_api_key:
+        try:
+            from google import genai
+            client = genai.Client(api_key=gemini_api_key)
+            prompt = f"""
+            You are an advanced health and nutrition AI assistant for a premium food ordering app called StayHeal.
+            Based on the user's weekly food ordering data, generate 3 short, personalized, and encouraging nutritional insights.
+            
+            Data Summary:
+            - Average Calories per meal: {avg_cal:.0f} kcal
+            - Average Protein per meal: {avg_prot:.1f} g
+            - Average Sugar per meal: {avg_sugar:.1f} g
+            - Days tracked: {active_days}/7
+            - Total items ordered: {total_items}
+            
+            Format your response as exactly 3 bullet points (starting with "-"), without any introductory or concluding text. Be concise, actionable, and friendly.
+            """
+            
+            response = client.models.generate_content(
+                model='gemini-2.5-pro',
+                contents=prompt,
+            )
+            
+            if response.text:
+                ai_insights = [line.strip().lstrip('-').lstrip('*').strip() for line in response.text.split('\\n') if line.strip() and (line.strip().startswith('-') or line.strip().startswith('*'))]
+                if not ai_insights:
+                   ai_insights = [line.strip() for line in response.text.split('\\n') if line.strip()]
+                return SummaryResponse(insights=ai_insights[:3])
+        except Exception as exc:
+            logger.error("Gemini API generation failed: %s", exc)
+
+    # Fallback to Rule-based Insights if Gemini is unavailable
+
 
     # Insight 1 — Calorie snapshot
     if avg_cal > 700:
