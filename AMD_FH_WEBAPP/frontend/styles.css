@@ -1,0 +1,95 @@
+/* StayHeal Design System - Root Tokens & Core Layout */
+
+:root {
+    --primary: #00685c;
+    --primary-container: #008375;
+    --on-primary: #ffffff;
+    --secondary: #984800;
+    --secondary-container: #fd811a;
+    --tertiary: #006b1b;
+    --error: #ba1a1a;
+    --surface: #f8f9fa;
+    --surface-container-low: #f3f4f5;
+    --surface-container-lowest: #ffffff;
+    --on-surface: #191c1d;
+    --on-surface-variant: #3d4949;
+    --outline-variant: #bcc9c8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    margin: 0;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, .font-headline {
+    font-family: 'Manrope', sans-serif;
+}
+
+.health-badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-flex;
+    items-center: center;
+    gap: 4px;
+}
+
+.health-badge.green {
+    background-color: rgba(0, 107, 27, 0.1);
+    color: var(--tertiary);
+}
+
+.health-badge.yellow {
+    background-color: rgba(152, 72, 0, 0.1);
+    color: var(--secondary);
+}
+
+.health-badge.red {
+    background-color: rgba(186, 26, 26, 0.1);
+    color: var(--error);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom Animations */
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Circular Progress Gauge */
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+/* Nudge Modal Overlay */
+#nudge-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+#nudge-modal.active {
+    display: flex;
+}
