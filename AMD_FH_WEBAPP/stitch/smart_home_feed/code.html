@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vitality Core | Smart Home Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffdbc8",
+                        "on-primary-container": "#f4fffb",
+                        "surface-tint": "#006b5f",
+                        "tertiary-fixed-dim": "#78dc77",
+                        "error-container": "#ffdad6",
+                        "primary": "#00685c",
+                        "on-background": "#191c1d",
+                        "on-tertiary-container": "#f7fff1",
+                        "surface": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#59dbc7",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#5f2b00",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container": "#edeeef",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "error": "#ba1a1a",
+                        "secondary": "#984800",
+                        "primary-fixed-dim": "#59dbc7",
+                        "surface-bright": "#f8f9fa",
+                        "on-secondary-fixed": "#311300",
+                        "surface-dim": "#d9dadb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#733500",
+                        "tertiary-container": "#1e862d",
+                        "outline-variant": "#bcc9c8",
+                        "outline": "#6d7979",
+                        "on-primary-fixed-variant": "#005047",
+                        "on-surface-variant": "#3d4949",
+                        "on-tertiary-fixed-variant": "#005313",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#00201c",
+                        "secondary-container": "#fd811a",
+                        "tertiary": "#006b1b",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#008375",
+                        "secondary-fixed-dim": "#ffb689",
+                        "on-tertiary-fixed": "#002204",
+                        "primary-fixed": "#79f7e3",
+                        "tertiary-fixed": "#94f990",
+                        "inverse-on-surface": "#f0f1f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 max-w-screen-xl mx-auto bg-slate-50/80 backdrop-blur-lg rounded-b-[1.5rem] shadow-[0_24px_40px_rgba(25,28,29,0.04)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a healthy smiling man in a modern kitchen setting with natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBOyTTR1CsqyZIeFV6W5He93G81PjeUBQzWao17emtoY8b3ahwRhIvvCEQIFaZNklWK_Uk4wrpwejJyFRG5mSwE4zcpRkWFIenMHYNEsXZXxYrnxDG477eCLuMSmjLHkUxVAZDnlcgpKxs8_jYFWiLlbFa13v_J_zj1C1OOZjN9fztZURNB1VbHozwwT4zIxm5ZMfMGm41OJiCqqx3ZzmcxuzLBPR_CYUmi63oxLMsMq1o4PbVQwkO0He5WARpAp1OXjtU9NnsHZM"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Current Location</span>
+<span class="font-['Manrope'] font-bold tracking-tight text-[#191c1d]">Indiranagar, 12th Main</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-tertiary-fixed px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-bold text-on-tertiary-fixed-variant">88</span>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-200/50 transition-colors">
+<span class="material-symbols-outlined text-[#00685c]">search</span>
+</button>
+</div>
+</header>
+<main class="mt-24 px-6 space-y-10">
+<!-- Hero: The Nudge -->
+<section class="relative overflow-hidden rounded-[2rem] bg-surface-container-low min-h-[420px] flex items-end">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover" data-alt="Exquisite healthy grain bowl with vibrant salmon, avocado, edamame, and radish slices on a ceramic plate, moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVI6CYnwSAotyshsIyp-D100bIfePx9rm2MPjMWc5ps3Hp0yIUlm_PhmxXAU_jF2V2202upqrE6sTZAv3Sx7s0lwHTwCyjCZNQ10NEkcaq3GfzixYYfTRvkRd7CiWcv3c_LBEBmeC0S2pDMRMRfN48JbZqs-Q1cxPYUV-ANu_ZtTMHgqMG9IeShDJ8_4-mhAxCrRTdbKcowG5Kuk6WrrqEM8DJFG0_aAiNxQeYFsmDWGjXFy4pKxnbTeZuIqFpjl0WdPJSMe8dtS8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+</div>
+<div class="relative p-8 w-full">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 text-white rounded-full mb-4 backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em]">The Nudge</span>
+</div>
+<h2 class="text-white text-3xl font-extrabold leading-[1.1] mb-4 max-w-xs tracking-tight">
+                    It's 8:00 PM on a Tuesday.
+                </h2>
+<p class="text-white/80 text-base leading-relaxed mb-6 max-w-sm">
+                    You usually order <span class="text-secondary-fixed font-bold">Biryani</span> tonight, but how about a high-protein bowl to hit your goal?
+                </p>
+<div class="flex gap-3">
+<button class="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+                        Yes, help me hit it
+                    </button>
+<button class="bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold active:scale-95 transition-transform">
+                        Show Biryani
+                    </button>
+</div>
+</div>
+</section>
+<!-- Suggested for You: Featured Dish -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<span class="text-primary font-bold text-sm tracking-wider uppercase">Personalized Pick</span>
+<h3 class="text-2xl font-bold text-on-surface">Suggested for You</h3>
+</div>
+<span class="text-primary font-semibold text-sm underline decoration-primary/30">View Analysis</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="group bg-surface-container-lowest rounded-[1.5rem] overflow-hidden shadow-[0_12px_24px_rgba(0,0,0,0.02)] border border-outline-variant/10">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Macro photography of a fresh mediterranean salad with feta cheese, olives, and citrus dressing on a white textured plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgp-krQ8rRHAdJM9KqUGeQe82rswYgaAj5wdzHHdyOrxL4SBK-c0JOKmMwAMLV9S8hYck4q2bYX75wbc--qy9o2j_j1hGXWAzA2M0HvYElPVZRO_Fj-NkUQrbTAcjJzxiA93gUWxPDdRtSuHr9zqGd98aqWRygkplF-4imGKfJJRhI5kZYV4n-7Vi6TIbm9GmLd6RyVzN-kTjdADSTQqqTPO8El1XMdFM7sGecoV54Kd3sDXPEalOk7jd5RRFf_6CeIeVVr7Mr-Tc"/>
+<div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-on-surface font-bold text-sm tracking-tight">94 Nutri-Score</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-xl font-bold text-on-surface">Harissa Chicken &amp; Quinoa</h4>
+<p class="text-on-surface-variant text-sm">Vitality Kitchen • 4.8 km</p>
+</div>
+<span class="text-primary font-bold text-lg">₹489</span>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="bg-surface-container-low px-3 py-1 rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">32g Protein</span>
+<span class="bg-surface-container-low px-3 py-1 rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">Low Carb</span>
+<span class="bg-surface-container-low px-3 py-1 rounded-full text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">Heart Healthy</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recovery Meals: Post-Activity -->
+<section class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface leading-none">Recovery Meals</h3>
+<p class="text-on-surface-variant text-xs mt-1">Based on your 45min HIIT session today</p>
+</div>
+</div>
+<div class="flex overflow-x-auto pb-4 gap-5 no-scrollbar -mx-6 px-6">
+<!-- Card 1 -->
+<div class="flex-none w-64 bg-white rounded-[1.5rem] p-4 shadow-sm">
+<div class="w-full h-40 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Grilled chicken breast with steamed broccoli and brown rice on a modern grey plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMjzu-b3bDdmqe1KA3JW_ucWH0EqAmKmPwXvtGKPGdQJ3peG5LswKZks6MKktAw-dFHJjzUMkk8VqgJQBXlqwsc3bgTEChX5d0RjSGoRrcgNoYymUQlbANav1EhkK4hebLz9M2Wyg363GNqYuQZGvQrC5nzEWrPO1azfy_n-9V1xLIq1U3-PSiuJLiVYixY6G23oEbCcm5ewGYnXEjXK_UzcLFetLAXKsdMpy7tbKDYjQo61SfeqqrOtGJzjUlo4FcXf_9ITmWTDE"/>
+</div>
+<h5 class="font-bold text-on-surface truncate">Lean Recovery Plate</h5>
+<div class="flex items-center justify-between mt-2">
+<span class="text-tertiary font-bold text-xs uppercase">Glycogen Refill</span>
+<span class="text-on-surface-variant text-xs">₹340</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex-none w-64 bg-white rounded-[1.5rem] p-4 shadow-sm">
+<div class="w-full h-40 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Healthy poke bowl with tuna, avocado, and pickled ginger on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBnSxUYG71JYwmWYopSFE7lHpXXgZwc7SsJSWu3-aK9j1XTHb8ir091tGZt-Kmh-J9yA3c6oEHZ2_5Eo50KUPbqW_eOqZO3yko1Gq_BdE9Jx_-OmzC85oHu3diqXIH4ZTLzUrBEdJ-fnTIS8lwMWa0fPSUgJKEPBf7eB27Pw2EtIC32WZ2JrommubCeNHZ_DSYKDec8cVkH_kuCpW1WrTOXGcmxPRCeQeZqtW92QPHGB6zjSt9cLgL7DmmZTkeePDM1BE60IM2qJk"/>
+</div>
+<h5 class="font-bold text-on-surface truncate">Ahi Tuna Poke</h5>
+<div class="flex items-center justify-between mt-2">
+<span class="text-tertiary font-bold text-xs uppercase">Omega-3 Rich</span>
+<span class="text-on-surface-variant text-xs">₹520</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex-none w-64 bg-white rounded-[1.5rem] p-4 shadow-sm">
+<div class="w-full h-40 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Colorful roasted vegetable salad with chickpeas and tahini drizzle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAoA9ALHisRqfhb17nx_SaIvrJ8wjjUQZ96XibzKjg2GAK9ZrOBhm92cu-a4dcgZcm13u4wQAnUd8K-DgpGcZTfiSa6_z0F6TPjUEOjuivZjtrw1pQO-DKpfq0vTcLGEZggXGxmXDFXDXeHyyCqRlYyPYRvsDtg0Z3bPahKearbLrYOLEKD3FK48FCEtn09hLxqEq3Qrh8grtEWqEv1nrifXaCKLBE7sPMt-pRaNjIni7ZHAmQEA7yh421qXLJJdNZuNpkiB_vzy4"/>
+</div>
+<h5 class="font-bold text-on-surface truncate">Plant Power Roast</h5>
+<div class="flex items-center justify-between mt-2">
+<span class="text-tertiary font-bold text-xs uppercase">Anti-Inflammatory</span>
+<span class="text-on-surface-variant text-xs">₹290</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Insights & Local Favorites -->
+<section class="grid grid-cols-2 grid-rows-2 gap-4 h-[400px]">
+<div class="col-span-1 row-span-2 bg-primary rounded-[2rem] p-6 text-white flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4">monitoring</span>
+<h4 class="text-xl font-bold leading-tight">Weekly Score Momentum</h4>
+</div>
+<div>
+<p class="text-white/70 text-sm mb-4">You're 12% more efficient in hitting macros this week than last.</p>
+<div class="h-1 bg-white/20 rounded-full w-full">
+<div class="h-1 bg-white rounded-full w-3/4"></div>
+</div>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-high rounded-[2rem] p-6 flex flex-col justify-between">
+<span class="text-[10px] font-black uppercase text-on-surface-variant">Local Favorite</span>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-on-surface">The Salad Lab</h4>
+<p class="text-xs text-tertiary font-bold">96 Score</p>
+</div>
+<span class="material-symbols-outlined text-secondary">stars</span>
+</div>
+</div>
+<div class="col-span-1 bg-secondary-fixed rounded-[2rem] p-6 flex flex-col justify-between">
+<span class="text-[10px] font-black uppercase text-on-secondary-fixed">Late Night</span>
+<div>
+<h4 class="font-bold text-on-secondary-fixed">Quick Light Bites</h4>
+<p class="text-[10px] text-on-secondary-fixed-variant">Optimal digestion</p>
+</div>
+</div>
+</section>
+<!-- Local Favorites Section -->
+<section class="pb-8 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-on-surface">Local Favorites with High Scores</h3>
+<span class="material-symbols-outlined text-on-surface-variant">arrow_forward</span>
+</div>
+<div class="space-y-4">
+<!-- Row Item -->
+<div class="flex items-center gap-4 bg-surface-container-low p-3 rounded-[1.5rem]">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-none">
+<img class="w-full h-full object-cover" data-alt="Exotic fruit and granola bowl with honey drizzle, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHRNQg6jhQUHFgXSiLHKAbxLMDjK_s6zBx12ZEanPc96WS9RsOOgKAA-I6BrqXZxN2U7gsi-tXnDMZb4eTZEEI9quGcehUl2Rsj9pCZ9r7RmLvplzcSGjQod0z8mu7SEq-OGBlVyOXQNajvclH3s0JMrGgfZXkTyGg7EcWXYbbw7CChLygHl7McVFpWWlJwXMElPiJEg7nIiiNg_YZeEOTngWHmGOp9fOqHZ86vY2_OIRPxTFL6dJhSWBc-88bvmvHITJwg4MUj7E"/>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-on-surface">Tropical Açai Superbowl</h5>
+<p class="text-xs text-on-surface-variant">Berry Bliss • 15-20 min</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">eco</span>
+<span class="text-[10px] font-bold text-tertiary uppercase">High Fiber</span>
+</div>
+</div>
+<div class="text-right pr-2">
+<div class="text-sm font-bold text-on-surface">₹249</div>
+<div class="text-[10px] text-on-surface-variant">4.2 ★</div>
+</div>
+</div>
+<!-- Row Item 2 -->
+<div class="flex items-center gap-4 bg-surface-container-low p-3 rounded-[1.5rem]">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-none">
+<img class="w-full h-full object-cover" data-alt="Healthy thin crust vegetable pizza with arugula and fresh tomatoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKc0awBA5JVEHBvPdgRL-wVs3yvLX4UgM1as2RHl5_EPwZC174SjCB57n2Jpi2lp-S4lyJaMusJqJU5BLxAWYZa-Zk0URuXOHRzhVEb7770o7ltSXzLn_KbROa3B6yBVyXjVeCWewJgZnCGzJrc0I4lOh7l-As56kXd5-0lLBTxGvuE_h_4b8j2AHfvGzWUEJH3kmVfk-U4NQBKdl0ZlJ99tt_6QeiZ1WaoWNnwwWx45hoDve5D5UyM3FQocyMIC57E3hFNwyFE1M"/>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-on-surface">Garden Pesto Flatbread</h5>
+<p class="text-xs text-on-surface-variant">The Oven Health • 25 min</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">nutrition</span>
+<span class="text-[10px] font-bold text-tertiary uppercase">Whole Grain</span>
+</div>
+</div>
+<div class="text-right pr-2">
+<div class="text-sm font-bold text-on-surface">₹399</div>
+<div class="text-[10px] text-on-surface-variant">4.6 ★</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-10px_40px_rgba(25,28,29,0.06)]">
+<a class="flex flex-col items-center justify-center bg-[#00685c] text-white rounded-full px-5 py-2 scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-0.5">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#707973] px-4 py-2 hover:text-[#00685c] transition-all" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-0.5">AI Engine</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#707973] px-4 py-2 hover:text-[#00685c] transition-all" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-0.5">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#707973] px-4 py-2 hover:text-[#00685c] transition-all" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-0.5">Insights</span>
+</a>
+</nav>
+<!-- Floating Action Button (Conditional for Home) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-secondary shadow-xl shadow-secondary/30 rounded-2xl flex items-center justify-center text-white active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+</button>
+</body></html>
