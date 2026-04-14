@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayHeal | Smart Dashboard</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00685C',
+                        surface: '#F9FAFB',
+                        nudgeBg: '#091A18',
+                        scoreBg: '#E8F5E9',
+                        scoreText: '#2E7D32',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Local Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-surface text-gray-900 pb-28 pt-24 font-['Inter'] selection:bg-primary selection:text-white">
+
+    <!-- Top App Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-5 py-4 bg-surface/90 backdrop-blur-md">
+        <div class="flex items-center gap-3 w-full">
+            <div class="w-10 h-10 rounded-full border border-gray-200 overflow-hidden shrink-0">
+                <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=200&q=80" alt="User Avatar">
+            </div>
+            <div class="flex flex-col flex-1">
+                <span class="text-[9px] uppercase tracking-[0.15em] text-gray-500 font-bold leading-tight">Current Location</span>
+                <div class="flex items-center gap-1">
+                    <span class="font-['Manrope'] font-extrabold text-[#111827] text-[15px] tracking-tight">Indiranagar, 12th Main</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+                <div class="flex items-center gap-1.5 bg-[#B8F5B8] px-3 py-1.5 rounded-full">
+                    <span class="material-symbols-outlined text-[14px] text-[#1E5C1E]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                    <span class="text-xs font-bold text-[#1E5C1E]">88</span>
+                </div>
+                <button class="p-1 text-gray-700 hover:text-black transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-5 max-w-lg mx-auto space-y-10">
+        
+        <!-- 1. The Nudge Block -->
+        <section class="relative rounded-[2rem] overflow-hidden shadow-xl" style="background-color: #0d1b1a;">
+            <!-- Background Image overlay -->
+            <div class="absolute inset-0 opacity-40">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" alt="Biryani bowl" class="w-full h-full object-cover" />
+            </div>
+            <!-- Gradient for readability -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#091A18] via-[#091A18]/80 to-transparent"></div>
+            
+            <div class="relative p-7 pt-[4.5rem]">
+                <!-- Tag -->
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#00685C] rounded-full mb-4">
+                    <span class="material-symbols-outlined text-white text-[12px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-white">The Nudge</span>
+                </div>
+                
+                <h2 class="text-white font-['Manrope'] text-[32px] font-extrabold leading-[1.1] tracking-tight mb-4 pr-4 drop-shadow-md">
+                    It's 8:00 PM on a Tuesday.
+                </h2>
+                <p class="text-white/80 text-[15px] leading-[1.5] mb-8 font-medium drop-shadow-sm pr-6">
+                    You usually order Biryani tonight, but how about a high-protein bowl to hit your goal?
+                </p>
+                
+                <div class="flex items-center gap-3">
+                    <button class="flex-1 bg-[#00685C] text-white py-3.5 px-4 rounded-[1.2rem] font-bold text-[14px] shadow-lg active:scale-95 transition-transform leading-tight">
+                        Yes, help<br>me hit it
+                    </button>
+                    <button class="flex-1 bg-white/10 backdrop-blur-md border border-white/20 text-white py-3.5 px-4 rounded-[1.2rem] font-bold text-[14px] active:scale-95 transition-transform leading-tight">
+                        Show<br>Biryani
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Suggested For You -->
+        <section id="suggested-section">
+            <div class="flex justify-between items-end mb-4">
+                <div class="flex flex-col">
+                    <span class="text-[#00685C] text-[10px] uppercase tracking-wider font-extrabold mb-0.5">Personalized Pick</span>
+                    <h3 class="text-2xl font-['Manrope'] font-extrabold text-[#111827]">Suggested for You</h3>
+                </div>
+                <a href="#" class="text-[#00685C] text-xs font-bold hover:underline mb-1">View Analysis</a>
+            </div>
+            
+            <div id="hero-recommendation" class="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+                <div class="relative h-56">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80" alt="Harissa Chicken" class="w-full h-full object-cover" />
+                    <!-- Nutri-Score badge -->
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                        <span class="material-symbols-outlined text-[14px] text-[#2E7D32]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span class="text-[12px] font-bold text-[#111827] tracking-tight">94 Nutri-Score</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-1.5">
+                        <h4 class="text-[18px] font-['Manrope'] font-bold text-[#111827] leading-tight max-w-[75%]">Harissa Chicken & Quinoa</h4>
+                        <span class="text-[#00685C] font-extrabold text-[18px]">₹489</span>
+                    </div>
+                    <p class="text-[13px] text-gray-500 font-medium mb-4">Vitality Kitchen • 4.8 km</p>
+                    
+                    <div class="flex gap-2">
+                        <div class="bg-gray-100 px-3 py-1.5 rounded-full flex flex-col items-center flex-1 justify-center">
+                            <span class="text-[9px] font-extrabold text-gray-900 leading-none">32G</span>
+                            <span class="text-[8px] font-bold tracking-widest text-gray-500 uppercase mt-0.5">Protein</span>
+                        </div>
+                        <div class="bg-gray-100 px-3 py-1.5 rounded-full flex flex-col items-center flex-1 justify-center">
+                            <span class="text-[9px] font-extrabold text-gray-900 leading-none">LOW</span>
+                            <span class="text-[8px] font-bold tracking-widest text-gray-500 uppercase mt-0.5">Carb</span>
+                        </div>
+                        <div class="bg-gray-100 px-3 py-1.5 rounded-full flex flex-col items-center flex-1 justify-center">
+                            <span class="text-[9px] font-extrabold text-gray-900 leading-none">HEART</span>
+                            <span class="text-[8px] font-bold tracking-widest text-gray-500 uppercase mt-0.5">Healthy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Recovery Meals Horizontal Scroll -->
+        <section>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 rounded-full bg-[#E8F5E9] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[#2E7D32] text-[18px]">fitness_center</span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-['Manrope'] font-extrabold text-[#111827] leading-tight">Recovery Meals</h3>
+                    <p class="text-[11px] text-gray-500 font-medium tracking-tight">Based on your 45min HIIT session today</p>
+                </div>
+            </div>
+            
+            <div id="recovery-meals-container" class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-5 px-5 snap-x">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- 4. Dash Widgets Grid -->
+        <section class="grid grid-cols-2 gap-4">
+            <!-- Left: Momentum -->
+            <div class="bg-[#004D40] rounded-[1.5rem] p-5 flex flex-col justify-between text-white shadow-lg min-h-[240px]">
+                <div>
+                    <span class="material-symbols-outlined text-[24px] mb-3">trending_up</span>
+                    <h4 class="font-['Manrope'] text-[24px] font-extrabold leading-tight mb-4 pr-4">Weekly Score Momentum</h4>
+                </div>
+                <div>
+                    <p class="text-[12px] text-white/80 leading-snug mb-4">You're 12% more efficient in hitting macros this week than last.</p>
+                    <!-- Small progress bar -->
+                    <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+                        <div class="w-[70%] h-full bg-white rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right stack -->
+            <div class="flex flex-col gap-4">
+                <!-- Local Favorite -->
+                <div class="flex-1 bg-gray-100 rounded-[1.5rem] p-5 flex flex-col justify-center relative shadow-sm">
+                    <span class="text-[8px] uppercase tracking-[0.15em] text-gray-500 font-bold mb-1">Local Favorite</span>
+                    <h4 class="text-[#111827] font-['Manrope'] text-[18px] font-extrabold leading-tight pr-6">The Salad Lab</h4>
+                    <span class="text-[#2E7D32] text-[11px] font-extrabold mt-1">98 Score</span>
+                    <div class="absolute right-4 bottom-5 w-6 h-6 rounded-full bg-[#A83226] text-white flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                </div>
+                
+                <!-- Late Night -->
+                <div class="flex-1 bg-[#FFE0CC] rounded-[1.5rem] p-5 flex flex-col justify-center shadow-sm">
+                    <span class="text-[8px] uppercase tracking-[0.15em] text-[#935B3B] font-bold mb-1">Late Night</span>
+                    <h4 class="text-[#4E2D1A] font-['Manrope'] text-[18px] font-extrabold leading-tight pr-4">Quick Light Bites</h4>
+                    <span class="text-[#935B3B] text-[11px] font-medium mt-1 leading-snug">Optimal digestion</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Local Favorites with High Scores List -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-[18px] font-['Manrope'] font-bold text-[#111827]">Local Favorites with High Scores</h3>
+                <span class="material-symbols-outlined text-gray-400">arrow_forward</span>
+            </div>
+            <div id="local-favorites-container" class="space-y-3">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 px-4 pb-6 pt-3 bg-white/95 backdrop-blur-xl border-t border-gray-100 flex justify-around items-center">
+        <!-- Home -->
+        <button class="flex flex-col items-center justify-center bg-[#00685c] text-white rounded-full px-6 py-2.5 shadow-md shadow-[#00685c]/20">
+            <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="font-['Inter'] text-[10px] font-bold uppercase tracking-wider mt-0.5">Home</span>
+        </button>
+        <!-- AI Engine -->
+        <button class="flex flex-col items-center justify-center text-gray-400 w-16">
+            <span class="material-symbols-outlined text-[24px]">psychology</span>
+            <span class="font-['Inter'] text-[9px] font-bold uppercase tracking-wider mt-1 text-gray-500">AI Engine</span>
+        </button>
+        <!-- Orders -->
+        <button class="flex flex-col items-center justify-center text-gray-400 w-16">
+            <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+            <span class="font-['Inter'] text-[9px] font-bold uppercase tracking-wider mt-1 text-gray-500">Orders</span>
+        </button>
+        <!-- Insights -->
+        <button class="flex flex-col items-center justify-center text-gray-400 w-16">
+            <span class="material-symbols-outlined text-[24px]">monitoring</span>
+            <span class="font-['Inter'] text-[9px] font-bold uppercase tracking-wider mt-1 text-gray-500">Insights</span>
+        </button>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
