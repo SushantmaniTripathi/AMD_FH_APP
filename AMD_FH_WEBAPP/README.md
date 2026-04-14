@@ -12,7 +12,6 @@ StayHeal is a premium food-ordering interface featuring an intelligent health re
 - **Configure Environment**: 
   - Create a `.env` file based on `.env.example`.
   - Add your `WEATHER_API_KEY` (OpenWeatherMap).
-  - Add your `GOOGLE_APPLICATION_CREDENTIALS` (Service Account JSON).
 - **Run the server**: 
   ```bash
   uvicorn main:app --reload
@@ -58,9 +57,8 @@ To deploy the backend to Cloud Run using the included `Dockerfile` and `cloudbui
 1.  **Submit Build**:
     ```bash
     gcloud builds submit --config cloudbuild.yaml \
-      --substitutions=_WEATHER_API_KEY="your_key",_FIRESTORE_PROJECT_ID="your_pid"
+      --substitutions=_WEATHER_API_KEY="your_key"
     ```
-2.  **Service Account**: Ensure the `stayheal-service-account` secret is stored in GCP Secret Manager as requested in the build config.
 
 ---
 

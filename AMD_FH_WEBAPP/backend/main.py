@@ -67,15 +67,6 @@ async def health() -> dict:
 @app.on_event("startup")
 async def on_startup() -> None:
     logger.info("StayHeal API starting up …")
-    # Eagerly initialise the Firestore client so the first request isn't slow.
-    try:
-        from db import get_db
-        get_db()
-        logger.info("Firestore client ready.")
-    except Exception as exc:  # noqa: BLE001
-        logger.warning(
-            "Firestore init skipped (no service account configured): %s", exc
-        )
 
 
 @app.on_event("shutdown")

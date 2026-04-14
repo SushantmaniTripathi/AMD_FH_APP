@@ -33,8 +33,7 @@ steps:
       - "--region=${_REGION}"
       - "--allow-unauthenticated"
       - "--port=8080"
-      - "--set-env-vars=WEATHER_API_KEY=${_WEATHER_API_KEY},FIRESTORE_PROJECT_ID=${_FIRESTORE_PROJECT_ID},DEFAULT_CITY=${_DEFAULT_CITY},FRONTEND_ORIGIN=${_FRONTEND_ORIGIN}"
-      - "--set-secrets=GOOGLE_APPLICATION_CREDENTIALS=stayheal-service-account:latest"
+      - "--set-env-vars=WEATHER_API_KEY=${_WEATHER_API_KEY},DEFAULT_CITY=${_DEFAULT_CITY},FRONTEND_ORIGIN=${_FRONTEND_ORIGIN}"
 
 # ── Substitution defaults (override via trigger or --substitutions flag) ───────
 substitutions:
@@ -42,7 +41,6 @@ substitutions:
   _REGION:              "asia-south1"        # Mumbai  — closest to Bengaluru
   _IMAGE_NAME:          "asia-south1-docker.pkg.dev/${PROJECT_ID}/stayheal/backend"
   _WEATHER_API_KEY:     ""                   # override in Cloud Build trigger
-  _FIRESTORE_PROJECT_ID: "${PROJECT_ID}"
   _DEFAULT_CITY:        "Bengaluru"
   _FRONTEND_ORIGIN:     "https://your-frontend-domain.com"
 
