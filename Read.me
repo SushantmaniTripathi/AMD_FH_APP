@@ -1,0 +1,185 @@
+# 🥗 StayHeal
+
+StayHeal is an intelligent food ordering platform that combines nutritional analysis, user behavior, and real-time environmental context to recommend healthier meal choices without compromising user preferences.
+
+The recommendation engine considers nutrition, ordering history, time of day, and weather conditions to rank menu items and provide personalized health nudges.
+
+---
+
+## Features
+
+- 🧠 Intelligent health scoring engine
+- 🍽 Personalized meal recommendations
+- 🌦 Weather-aware food suggestions
+- 🕒 Time-based recommendation adjustments
+- 📊 Weekly health insights
+- 💡 Behavioral nudges based on order history
+- ☁️ End-to-end deployment on Google Cloud Platform (Cloud Run)
+
+---
+
+## Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### Backend
+- FastAPI
+- Python
+
+### Cloud & DevOps
+- Docker
+- Google Cloud Build
+- Google Cloud Run
+- OpenWeatherMap API
+
+---
+
+## Architecture
+
+```text
+Frontend (HTML/CSS/JS)
+        │
+        ▼
+FastAPI Backend
+        │
+ ├── Health Recommendation Engine
+ ├── Context Processor
+ │      ├── Time
+ │      └── Weather API
+ ├── User History Analyzer
+ └── Weekly Summary Generator
+        │
+        ▼
+Google Cloud Run
+```
+
+---
+
+## Health Recommendation Logic
+
+Each menu item receives a dynamic **Health Score** based on:
+
+- Nutritional values (calories, protein, sugar)
+- Recent ordering history
+- Time of day
+- Current weather
+- Healthy eating reinforcement
+
+Context-aware adjustments include:
+
+- Heavy meals receive lower scores during late-night hours.
+- Healthy items are boosted when recent eating habits are unhealthy.
+- Comfort foods receive a slight boost during rainy weather.
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/recommend` | Returns ranked menu recommendations |
+| POST | `/nudge` | Generates personalized behavioral nudges |
+| POST | `/summary` | Produces weekly nutrition insights |
+
+---
+
+## Local Setup
+
+### Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+cp .env.example .env
+# Add WEATHER_API_KEY
+
+uvicorn main:app --reload
+```
+
+Backend runs at:
+
+```
+http://localhost:8000
+```
+
+### Frontend
+
+Open:
+
+```
+frontend/index.html
+```
+
+Update `API_BASE_URL` in `frontend/app.js` if required.
+
+---
+
+## Deployment
+
+The application is containerized with Docker and deployed on **Google Cloud Platform**.
+
+Deployment workflow:
+
+```
+Local Development
+        │
+        ▼
+Docker Image
+        │
+        ▼
+Google Cloud Build
+        │
+        ▼
+Google Cloud Run
+```
+
+Deploy using:
+
+```bash
+gcloud builds submit \
+  --config cloudbuild.yaml \
+  --substitutions=_WEATHER_API_KEY="YOUR_API_KEY"
+```
+
+---
+
+## Project Structure
+
+```
+StayHeal/
+│
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+│   └── ...
+│
+├── frontend/
+│   ├── index.html
+│   ├── app.js
+│   └── ...
+│
+├── Dockerfile
+├── cloudbuild.yaml
+└── README.md
+```
+
+---
+
+## Future Improvements
+
+- User authentication
+- Nutrition goal personalization
+- AI-powered meal explanations
+- Order analytics dashboard
+- Mobile application support
+
+---
+
+## License
+
+MIT License
